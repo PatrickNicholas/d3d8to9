@@ -441,3 +441,97 @@ private:
 #ifndef D3D8TO9NOLOG
 extern std::ofstream LOG;
 #endif
+
+typedef struct IDirect3D8* LPDIRECT3D8, * PDIRECT3D8;
+typedef struct IDirect3DDevice8* LPDIRECT3DDEVICE8, * PDIRECT3DDEVICE8;
+typedef struct IDirect3DTexture8* LPDIRECT3DTEXTURE8, * PDIRECT3DTEXTURE8;
+typedef struct IDirect3DVertexBuffer8* LPDIRECT3DVERTEXBUFFER8, * PDIRECT3DVERTEXBUFFER8;
+typedef struct IDirect3DIndexBuffer8* LPDIRECT3DINDEXBUFFER8, * PDIRECT3DINDEXBUFFER8;
+typedef struct IDirect3DSurface8* LPDIRECT3DSURFACE8, * PDIRECT3DSURFACE8;
+typedef struct IDirect3DBaseTexture8* LPDIRECT3DBASETEXTURE8, * PDIRECT3DBASETEXTURE8;
+
+#ifdef  D3D8TO9_EXPORTS 
+#define D3D8TO9_API __declspec(dllexport)
+#else
+#define D3D8TO9_API __declspec(dllimport)
+#endif
+
+extern "C" D3D8TO9_API
+IDirect3D8 * WINAPI Direct3DCreate8(UINT SDKVersion);
+
+extern D3D8TO9_API HRESULT WINAPI
+D3DXCreateTextureFromFileInMemoryEx(
+	LPDIRECT3DDEVICE8         pDevice,
+	LPCVOID                   pSrcData,
+	UINT                      SrcDataSize,
+	UINT                      Width,
+	UINT                      Height,
+	UINT                      MipLevels,
+	DWORD                     Usage,
+	D3DFORMAT                 Format,
+	D3DPOOL                   Pool,
+	DWORD                     Filter,
+	DWORD                     MipFilter,
+	D3DCOLOR                  ColorKey,
+	D3DXIMAGE_INFO* pSrcInfo,
+	PALETTEENTRY* pPalette,
+	LPDIRECT3DTEXTURE8* ppTexture);
+
+extern D3D8TO9_API HRESULT WINAPI
+D3DXCreateTexture(
+	LPDIRECT3DDEVICE8         pDevice,
+	UINT                      Width,
+	UINT                      Height,
+	UINT                      MipLevels,
+	DWORD                     Usage,
+	D3DFORMAT                 Format,
+	D3DPOOL                   Pool,
+	LPDIRECT3DTEXTURE8* ppTexture);
+
+extern D3D8TO9_API HRESULT WINAPI
+D3DXCreateTextureFromFileExA(
+	LPDIRECT3DDEVICE8         pDevice,
+	LPCSTR                    pSrcFile,
+	UINT                      Width,
+	UINT                      Height,
+	UINT                      MipLevels,
+	DWORD                     Usage,
+	D3DFORMAT                 Format,
+	D3DPOOL                   Pool,
+	DWORD                     Filter,
+	DWORD                     MipFilter,
+	D3DCOLOR                  ColorKey,
+	D3DXIMAGE_INFO* pSrcInfo,
+	PALETTEENTRY* pPalette,
+	LPDIRECT3DTEXTURE8* ppTexture);
+
+extern D3D8TO9_API HRESULT WINAPI
+D3DXCreateTextureFromFileExW(
+	LPDIRECT3DDEVICE8         pDevice,
+	LPCWSTR                   pSrcFile,
+	UINT                      Width,
+	UINT                      Height,
+	UINT                      MipLevels,
+	DWORD                     Usage,
+	D3DFORMAT                 Format,
+	D3DPOOL                   Pool,
+	DWORD                     Filter,
+	DWORD                     MipFilter,
+	D3DCOLOR                  ColorKey,
+	D3DXIMAGE_INFO* pSrcInfo,
+	PALETTEENTRY* pPalette,
+	LPDIRECT3DTEXTURE8* ppTexture);
+
+extern D3D8TO9_API HRESULT WINAPI
+D3DXSaveTextureToFileA(
+	LPCSTR                    pDestFile,
+	D3DXIMAGE_FILEFORMAT      DestFormat,
+	LPDIRECT3DBASETEXTURE8    pSrcTexture,
+	CONST PALETTEENTRY* pSrcPalette);
+
+extern D3D8TO9_API HRESULT WINAPI
+D3DXSaveTextureToFileW(
+	LPCWSTR                   pDestFile,
+	D3DXIMAGE_FILEFORMAT      DestFormat,
+	LPDIRECT3DBASETEXTURE8    pSrcTexture,
+	CONST PALETTEENTRY* pSrcPalette);
